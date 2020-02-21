@@ -8,7 +8,7 @@
 - apollo
 - graphql
 - hasura
-
+- heroku
 
 # 개발 시작환경
 <details>
