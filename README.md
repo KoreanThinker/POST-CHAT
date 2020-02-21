@@ -16,5 +16,5 @@
 
 - ```npx react-native init app --template react-native-template-typescript``` (typescript로 rn init)
 - [react-navigation 설치](https://reactnavigation.org/docs/en/getting-started.html)
-- [apollo 설치](https://www.apollographql.com/docs/react/get-started/)
+- [apollo 설치](https://www.apollographql.com/docs/react/get-started/) ("서버연동"이라는 커밋 참조)
 </details>
