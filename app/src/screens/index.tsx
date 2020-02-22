@@ -23,7 +23,7 @@ const AppContainer = () =>
                 name='Home'
                 component={HomeScreen}
                 options={{
-                    header: (props) => <RightArrowHeader {...props} />,
+                    headerShown: false,
                     cardStyleInterpolator: fromRight
                 }}
             />
