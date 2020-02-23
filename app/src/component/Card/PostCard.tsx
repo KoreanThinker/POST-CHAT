@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { posting } from '../../graphql/posting/GET_POSTINGS'
 import { WIDTH, color1, color2 } from '../theme'
@@ -6,13 +6,21 @@ import LinearGradient from 'react-native-linear-gradient'
 import { BaseButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { useMutation } from '@apollo/react-hooks'
+import LIKE_POSTING, { likePostingVariables, likePostingData } from '../../graphql/posting/LIKE_POSTING'
 
 const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
 
     const { navigate } = useNavigation()
-
+    const [likePosting] = useMutation<likePostingData, likePostingVariables>(LIKE_POSTING)
+    const [isLiked, setIsLiked] = useState(like.map(({ userid }) => userid).includes('asdfs'))
     const onLike = () => {
-
+        likePosting({
+            variables: {
+                postid: id,
+                userid: 'asdfs'
+            }
+        })
+        setIsLiked(true)
     }
 
     const onComment = () => {
@@ -30,15 +38,15 @@ const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
                 <Text style={styles.descriptionText} >{description}</Text>
             </View>
             <View style={styles.infoContainer} >
-                <Text style={styles.infoText} >like {like && like.length} comment {comment && comment.length}</Text>
+                <Text style={styles.infoText} >like {like.length} comment {comment.length}</Text>
             </View>
             <View style={styles.buttonContainer} >
-                <BaseButton
+                {!isLiked && <BaseButton
                     onPress={onLike}
                     style={styles.button}
                 >
                     <Text style={styles.buttonText} >like</Text>
-                </BaseButton>
+                </BaseButton>}
                 <BaseButton
                     onPress={onComment}
                     style={styles.button}

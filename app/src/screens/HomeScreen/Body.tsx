@@ -8,11 +8,11 @@ import PostCard from '../../component/Card/PostCard';
 const Body = () => {
     const { loading, data } = useQuery<getPostingData, getPostingVariables>(GET_POSTINGS, {
         variables: {
-            limit: 5,
-            offset: 0
+            limit: 10,
+            offset: 0,
         }
     });
-    if (!loading) console.log(data)
+    if (!loading) console.log(data?.posting[0].like)
     return (
         <View style={styles.conatiner} >
             <LinearGradient
