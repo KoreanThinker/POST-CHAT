@@ -16,22 +16,29 @@ const HomeScreen = () => {
 
     const drawerRef = useRef<DrawerLayout>(null)
 
-
+    const onFab = () => {
+        navigate('Post')
+        drawerRef.current && drawerRef.current.closeDrawer()
+    }
 
     return (
-        <DrawerLayout
-            ref={drawerRef}
-            drawerWidth={WIDTH - 98}
-            drawerType='front'
-            drawerBackgroundColor="#fff"
-            renderNavigationView={Drawer}
-        >
-            <View style={styles.container} >
-                <Header headerLeftPress={() => drawerRef.current && drawerRef.current.openDrawer()} />
-                <Body />
-                <PlusFab onPress={() => navigate('Post')} />
-            </View>
-        </DrawerLayout>
+        <>
+            <DrawerLayout
+                ref={drawerRef}
+                drawerWidth={WIDTH - 98}
+                drawerType='slide'
+                drawerBackgroundColor="#fff"
+                renderNavigationView={Drawer}
+            >
+                <View style={styles.container} >
+                    <Header headerLeftPress={() => drawerRef.current && drawerRef.current.openDrawer()} />
+                    <Body />
+
+                </View>
+
+            </DrawerLayout>
+            <PlusFab onPress={onFab} />
+        </>
     )
 }
 

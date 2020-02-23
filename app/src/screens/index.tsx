@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, TransitionSpecs, TransitionPresets, CardStyleInterpolators } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
 import HomeScreen from './HomeScreen';
 import ChatScreen from './ChatScreen';
@@ -46,7 +46,8 @@ const AppContainer = () =>
                 name='Post'
                 component={PostScreen}
                 options={{
-                    header: (props) => <LeftArrowHeader {...props} />
+                    header: (props) => <LeftArrowHeader {...props} />,
+                    cardStyleInterpolator: fromRight
                 }}
             />
             <Stack.Screen

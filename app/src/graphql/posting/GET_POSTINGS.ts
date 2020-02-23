@@ -24,7 +24,7 @@ export interface getPostingVariables {
 }
 
 export default gql`
-  query getPosting($limit: Int!, $offset: Int!) {
+  query getPosting($limit: Int, $offset: Int!) {
     posting(limit: $limit, offset: $offset) {
       id
       description

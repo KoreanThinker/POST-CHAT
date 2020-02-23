@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { posting } from '../../graphql/posting/GET_POSTINGS'
 import { WIDTH, color1, color2 } from '../theme'
@@ -7,20 +7,40 @@ import { BaseButton } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { useMutation } from '@apollo/react-hooks'
 import LIKE_POSTING, { likePostingVariables, likePostingData } from '../../graphql/posting/LIKE_POSTING'
+import Animated, { Value, timing, Easing, } from 'react-native-reanimated'
 
 const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
 
     const { navigate } = useNavigation()
     const [likePosting] = useMutation<likePostingData, likePostingVariables>(LIKE_POSTING)
-    const [isLiked, setIsLiked] = useState(like.map(({ userid }) => userid).includes('asdfs'))
+    const [isLiked, setIsLiked] = useState(like.map(({ userid }) => userid).includes('aasdd2ffsfsffffss'))
+    const [likeNum, setLikeNum] = useState(like.length)
+
+    const [likeAnim] = useState(new Value(isLiked ? 0 : 1))
+    const likeAnimConfig: Animated.TimingConfig = {
+        duration: 250,
+        toValue: new Value(0),
+        easing: Easing.out(Easing.ease)
+    }
+    const runLikeAnim = timing(likeAnim, likeAnimConfig)
+
+    const [loadAnim] = useState(new Value(0))
+
+
+
+    useEffect(() => {
+
+    }, [])
+
     const onLike = () => {
         likePosting({
             variables: {
                 postid: id,
-                userid: 'asdfs'
+                userid: 'aasd2fss'
             }
         })
-        setIsLiked(true)
+        setLikeNum(likeNum + 1)
+        runLikeAnim.start(() => setIsLiked(true))
     }
 
     const onComment = () => {
@@ -38,15 +58,19 @@ const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
                 <Text style={styles.descriptionText} >{description}</Text>
             </View>
             <View style={styles.infoContainer} >
-                <Text style={styles.infoText} >like {like.length} comment {comment.length}</Text>
+                <Text style={styles.infoText} >like {likeNum} comment {comment.length}</Text>
             </View>
             <View style={styles.buttonContainer} >
-                {!isLiked && <BaseButton
-                    onPress={onLike}
-                    style={styles.button}
+                <Animated.View
+                    style={{ flex: likeAnim }}
                 >
-                    <Text style={styles.buttonText} >like</Text>
-                </BaseButton>}
+                    {!isLiked && <BaseButton
+                        onPress={onLike}
+                        style={styles.button}
+                    >
+                        <Animated.Text style={{ ...styles.buttonText, opacity: likeAnim }} >like</Animated.Text>
+                    </BaseButton>}
+                </Animated.View>
                 <BaseButton
                     onPress={onComment}
                     style={styles.button}
@@ -99,7 +123,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#fff',
-        fontSize: 16
+        fontSize: 16,
+        position: 'absolute'
     }
 })
 
