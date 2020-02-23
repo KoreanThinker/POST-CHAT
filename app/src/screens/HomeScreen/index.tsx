@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { useQuery } from '@apollo/react-hooks';
-import GET_PROFILE, { getProfileData } from '../../graphql/profile/GET_PROFILE';
+import React, { useRef } from 'react'
+import { View, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 import Drawer from './Drawer';
@@ -14,7 +12,7 @@ import Body from './Body';
 
 const HomeScreen = () => {
     const { navigate } = useNavigation()
-    // const { loading, data } = useQuery<getProfileData>(GET_PROFILE);
+
 
     const drawerRef = useRef<DrawerLayout>(null)
 
