@@ -8,12 +8,15 @@ import { useNavigation } from '@react-navigation/native'
 import { useMutation } from '@apollo/react-hooks'
 import LIKE_POSTING, { likePostingVariables, likePostingData } from '../../graphql/posting/LIKE_POSTING'
 import Animated, { Value, timing, Easing, } from 'react-native-reanimated'
+import { useUser } from '../../contexts/UserContext'
 
 const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
 
     const { navigate } = useNavigation()
+    const User = useUser()
     const [likePosting] = useMutation<likePostingData, likePostingVariables>(LIKE_POSTING)
-    const [isLiked, setIsLiked] = useState(like.map(({ userid }) => userid).includes('aasdd2ffsfsffffss'))
+
+    const [isLiked, setIsLiked] = useState(like.map(({ userid }) => userid).includes(User.id))
     const [likeNum, setLikeNum] = useState(like.length)
 
     const [likeAnim] = useState(new Value(isLiked ? 0 : 1))
@@ -36,7 +39,7 @@ const PostCard: React.FC<posting> = ({ description, like, comment, id }) => {
         likePosting({
             variables: {
                 postid: id,
-                userid: 'aasd2fss'
+                userid: User.id
             }
         })
         setLikeNum(likeNum + 1)

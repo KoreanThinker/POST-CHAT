@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet, RefreshControl } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
+import { View, FlatList, StyleSheet, RefreshControl } from 'react-native'
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTINGS, { getPostingData, getPostingVariables } from '../../graphql/posting/GET_POSTINGS';
 import PostCard from '../../component/Card/PostCard';
-import { useUser } from '../../contexts/UserContext';
 import TopGradientOutView from '../../component/View/TopGradientOutView';
 
 const Body = () => {
     const { loading, data, fetchMore, refetch } = useQuery<getPostingData, getPostingVariables>(GET_POSTINGS, {
         variables: {
-            limit: 2,
+            limit: 10,
             offset: 0,
-        }
+        },
+        fetchPolicy: 'network-only'
     });
 
     const [refreshing, setRefreshing] = useState(false)
@@ -33,8 +32,12 @@ const Body = () => {
 
     const onReFetch = async () => {
         setRefreshing(true)
-        await refetch()
-        setRefreshing(false)
+        try {
+            await refetch()
+            setRefreshing(false)
+        } catch (error) {
+            setRefreshing(false)
+        }
     }
 
     return (

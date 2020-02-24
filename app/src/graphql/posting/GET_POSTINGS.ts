@@ -25,7 +25,7 @@ export interface getPostingVariables {
 
 export default gql`
   query getPosting($limit: Int, $offset: Int!) {
-    posting(limit: $limit, offset: $offset) {
+    posting(limit: $limit, offset: $offset, order_by: {created_at: desc}) {
       id
       description
       like {
