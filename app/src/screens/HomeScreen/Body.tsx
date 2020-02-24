@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import GET_POSTINGS, { getPostingData, getPostingVariables } from '../../graphql/posting/GET_POSTINGS';
 import PostCard from '../../component/Card/PostCard';
 import { useUser } from '../../contexts/UserContext';
+import TopGradientOutView from '../../component/View/TopGradientOutView';
 
 const Body = () => {
     const { loading, data, fetchMore, refetch } = useQuery<getPostingData, getPostingVariables>(GET_POSTINGS, {
@@ -38,10 +39,7 @@ const Body = () => {
 
     return (
         <View style={styles.conatiner} >
-            <LinearGradient
-                colors={['#eee', '#eeeeee00']}
-                style={styles.topLinear}
-            />
+            <TopGradientOutView />
             {data && <FlatList
                 style={styles.flatList}
                 showsVerticalScrollIndicator={false}
@@ -62,12 +60,6 @@ const Body = () => {
 const styles = StyleSheet.create({
     conatiner: {
         flex: 1,
-    },
-    topLinear: {
-        position: 'absolute',
-        width: '100%',
-        height: 10,
-        zIndex: 99
     },
     flatList: {
         flex: 1
