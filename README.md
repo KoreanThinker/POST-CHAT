@@ -21,4 +21,6 @@
 
 # TODO
 - 포스팅 카드 로딩 애님
-- like anim text
+- userid
+- postscreen
+- drawer

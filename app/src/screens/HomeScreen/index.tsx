@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 import Drawer from './Drawer';
@@ -12,7 +12,6 @@ import Body from './Body';
 
 const HomeScreen = () => {
     const { navigate } = useNavigation()
-
 
     const drawerRef = useRef<DrawerLayout>(null)
 
@@ -33,7 +32,6 @@ const HomeScreen = () => {
                 <View style={styles.container} >
                     <Header headerLeftPress={() => drawerRef.current && drawerRef.current.openDrawer()} />
                     <Body />
-
                 </View>
 
             </DrawerLayout>
