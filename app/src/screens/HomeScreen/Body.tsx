@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTINGS, { getPostingData, getPostingVariables } from '../../graphql/posting/GET_POSTINGS';
 import PostCard from '../../component/Card/PostCard';
+import { useUser } from '../../contexts/UserContext';
 
 const Body = () => {
     const { loading, data, fetchMore, refetch } = useQuery<getPostingData, getPostingVariables>(GET_POSTINGS, {

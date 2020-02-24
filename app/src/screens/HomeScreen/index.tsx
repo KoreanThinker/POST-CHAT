@@ -27,7 +27,7 @@ const HomeScreen = () => {
                 drawerWidth={WIDTH - 98}
                 drawerType='slide'
                 drawerBackgroundColor="#fff"
-                renderNavigationView={Drawer}
+                renderNavigationView={() => <Drawer />}
             >
                 <View style={styles.container} >
                     <Header headerLeftPress={() => drawerRef.current && drawerRef.current.openDrawer()} />
