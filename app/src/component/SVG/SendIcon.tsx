@@ -1,7 +1,7 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-function SvgComponent() {
+function SendIcon() {
     return (
         <Svg width={16} height={16} viewBox="0 0 17.658 17.618" >
             <Path
@@ -14,4 +14,4 @@ function SvgComponent() {
     )
 }
 
-export default SvgComponent
+export default SendIcon

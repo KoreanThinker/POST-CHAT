@@ -22,3 +22,5 @@
 # TODO
 - 포스팅 카드 로딩 애님
 - postscreen
+- comment
+- chat

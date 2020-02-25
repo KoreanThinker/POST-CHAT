@@ -1,9 +1,9 @@
 import { gql } from "apollo-boost";
 
-export interface postingLike {
+interface postingLike {
   userid: string;
 }
-export interface postingComment {
+interface postingComment {
   id: string;
 }
 
