@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { useQuery } from '@apollo/react-hooks'
 import GET_POSTING_COMMENT, { getPostingCommentData, getPostingCommentVariables } from '../../graphql/posting/GET_POSTING_COMMENT'
 import { CommentScreenProps } from '.'
 import { useRoute } from '@react-navigation/native'
 import CommentCard from '../../component/Card/CommentCard'
+import { WIDTH } from '../../component/theme'
+import { FlatList } from 'react-native-gesture-handler'
 
 
 interface BodyProps {
@@ -56,6 +58,7 @@ const Body: React.FC<BodyProps> = ({ refetchTrigger, refetchDone }) => {
             onEndReached={onFetchMore}
             showsVerticalScrollIndicator={false}
             ListFooterComponent={<View style={{ height: 20 }} />}
+            style={{ flex: 1 }}
         />
     )
 }

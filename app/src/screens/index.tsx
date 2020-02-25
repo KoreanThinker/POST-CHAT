@@ -39,7 +39,8 @@ const AppContainer = () =>
                 name='Comment'
                 component={CommentScreen}
                 options={{
-                    header: (props) => <LeftArrowHeader {...props} />
+                    header: (props) => <LeftArrowHeader {...props} />,
+                    cardStyleInterpolator: fromRight
                 }}
             />
             <Stack.Screen

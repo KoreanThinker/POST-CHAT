@@ -11,17 +11,21 @@ const CommentCard: React.FC<postingComment> = ({ description, userid }) => {
     const isMine = userid == name
 
     return (
-        <LinearGradient
-            style={styles.container}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            colors={isMine ? [color1, color2] : [color3, color4]}
-        >
-            <Text style={styles.text} >
-                {!isMine && <Text style={{ fontWeight: 'bold' }} >{userid} </Text>}
-                <Text>{description}</Text>
-            </Text>
-        </LinearGradient>
+        <View style={{ alignItems: 'flex-start' }} >
+            <LinearGradient
+                style={styles.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                colors={isMine ? [color1, color2] : [color3, color4]}
+            >
+                <Text style={styles.text} >
+                    {!isMine && <Text style={{ fontWeight: 'bold' }} >{userid} </Text>}
+                    <Text>{description}</Text>
+                </Text>
+
+            </LinearGradient>
+        </View>
+
     )
 }
 
