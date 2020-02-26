@@ -10,7 +10,7 @@ import OpenSourceScreen from './OpenSourceScreen';
 
 import LeftArrowHeader from '../component/Headers/LeftArrowHeader';
 import RightArrowHeader from '../component/Headers/RightArrowHeader';
-import { fromRight } from '../component/Navigation/CardTransitionStyles';
+import { fromRight, fromLeft } from '../component/Navigation/CardTransitionStyles';
 
 const Stack = createStackNavigator()
 
@@ -54,6 +54,10 @@ const AppContainer = () =>
             <Stack.Screen
                 name='OpenSource'
                 component={OpenSourceScreen}
+                options={{
+                    headerShown: false,
+                    cardStyleInterpolator: fromLeft
+                }}
             />
         </Stack.Navigator>
     </NavigationContainer>
