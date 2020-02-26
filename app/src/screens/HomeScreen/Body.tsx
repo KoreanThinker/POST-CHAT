@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, FlatList, StyleSheet, RefreshControl } from 'react-native'
+import { View, FlatList, StyleSheet, RefreshControl, Text } from 'react-native'
 import { useQuery } from '@apollo/react-hooks';
 import GET_POSTINGS, { getPostingData, getPostingVariables } from '../../graphql/posting/GET_POSTINGS';
 import PostCard from '../../component/Card/PostCard';
@@ -43,7 +43,7 @@ const Body = () => {
     return (
         <View style={styles.conatiner} >
             <TopGradientOutView />
-            {data && <FlatList
+            {data ? <FlatList
                 style={styles.flatList}
                 showsVerticalScrollIndicator={false}
                 data={data.posting}
@@ -55,7 +55,12 @@ const Body = () => {
                     onRefresh={onReFetch}
                     progressViewOffset={25}
                 />}
-            />}
+
+            /> :
+                <View style={styles.loadingContainer} >
+                    <Text style={{ fontSize: 14, color: '#777' }} >Loading...</Text>
+                </View>
+            }
         </View>
     )
 }
@@ -66,6 +71,11 @@ const styles = StyleSheet.create({
     },
     flatList: {
         flex: 1
+    },
+    loadingContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
 
