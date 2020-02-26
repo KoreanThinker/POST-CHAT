@@ -9,7 +9,7 @@ interface ApiFlatlistProps {
 const ApiFlatlist: React.FC<ApiFlatlistProps> = ({ title, data }) => {
     return (
         <View style={styles.container} >
-            <Text style={styles.title} >{title}</Text>
+            {/* <Text style={styles.title} >{title}</Text> */}
             {data.map((item) =>
                 <Text style={styles.contentText} >{item}</Text>
             )}

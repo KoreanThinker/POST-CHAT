@@ -4,7 +4,7 @@ import LeftArrowAbsoluteTransParentHeader from '../../component/Headers/LeftArro
 import LinearGradient from 'react-native-linear-gradient'
 import { color1, color2 } from '../../component/theme'
 import ApiFlatlist from './ApiFlatlist'
-import { mit, apatch } from './Apis'
+import { mit, apache } from './Apis'
 
 const OpenSourceScreen = () => {
     return (
@@ -18,7 +18,6 @@ const OpenSourceScreen = () => {
             <ScrollView style={{ flex: 1 }} >
                 <View style={{ height: 50 }} />
                 <ApiFlatlist title='MIT' data={mit} />
-                <ApiFlatlist title='APATCH' data={apatch} />
             </ScrollView>
         </LinearGradient>
     )
