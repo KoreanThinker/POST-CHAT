@@ -1,4 +1,4 @@
-package com.app;
+package com.koreanthinker.postchat;
 
 import android.app.Application;
 import android.content.Context;
